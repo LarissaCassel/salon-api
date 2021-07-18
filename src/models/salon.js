@@ -6,7 +6,7 @@ const salon = new Schema({
         type: String,
         required: [true, 'Nome é Obrigatório']
     },
-    photo: String, 
+    logo: String, 
     email:{
         type: String,
         required: [true, 'E-mail é Obrigatório']
@@ -19,6 +19,12 @@ const salon = new Schema({
         type: String,
         required:[true, 'Telefone é Obrigatório']
     },
+   openingHours:[
+        {
+            open: Date,
+            close: Date
+        }
+    ],
     address:{
         street: {
             type: String,

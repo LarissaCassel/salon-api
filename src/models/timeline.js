@@ -14,7 +14,7 @@ const timeline = new Schema({
     },
     photo:{
         type:String,
-        required:[true, 'Não tem Imagem']
+        required:[true, 'Imagem']
     },
     date:{
         type: Date,

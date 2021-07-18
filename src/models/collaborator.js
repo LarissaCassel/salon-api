@@ -28,6 +28,18 @@ const collaborator = new Schema({
         enum:['A', 'I'],
         default:'A'
     },
+    dayOfWeek: {
+        type: [Number], //array de numeros com os dias da semana
+        required: true
+    },
+    start: {
+        type: Date, // Horario inicial do atendimento
+        required: true,
+    },
+    end: {
+        type: Date, //Horario final do Antendimento
+        required: true,
+    },
     date: {
         type: Date,
         default: Date.now(),

@@ -19,6 +19,12 @@ const services = new Schema({
         type:String,
         required:[true, 'Duração Não Informado']
     },
+    collaborators:[
+      {
+        type: mongoose.Types.ObjectId,
+        ref: 'Collaborator'
+      }
+    ],
     status: {
         type: String,
         enum: ['A', 'I'],
