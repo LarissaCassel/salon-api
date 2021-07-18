@@ -18,6 +18,7 @@ app.use('/services', require('./src/routes/services.routes'));
 app.use('/collaborator', require('./src/routes/collaborator.routes'));
 app.use('/timeline', require('./src/routes/timeline.routes'));
 app.use('/schedule', require('./src/routes/schedule.routes'));
+app.use('/user', require('./src/routes/user.routes'));
 
 app.set('port', PORT);
 app.listen(app.get('port'), () => {
