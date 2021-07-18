@@ -2,6 +2,8 @@ const express= require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 
+const formatDistanceToNow = require('date-fns/formatDistanceToNow');
+
 const Timeline = require('../models/timeline');
 const Collaborator = require('../models/collaborator');
 
@@ -24,13 +26,14 @@ router.get('/salon/:salonId', async(req, res) => {
         const timeline = await Timeline.find({
             salonId
         }).select('collaboratorId photo _id date');
-
+        
         let publication = [];
        
         for(post of timeline){
             const { collaboratorId, photo, _id, date } = post;
+            const dateDistanceToNow = formatDistanceToNow(new Date(date));
             const collaboratorPerfil = await Collaborator.findById(collaboratorId).select('name photo');
-            const collaboratorPost = {key:_id, image:photo, name:collaboratorPerfil.name, icon:collaboratorPerfil.photo, date};
+            const collaboratorPost = {key:_id, image:photo, name:collaboratorPerfil.name, icon:collaboratorPerfil.photo, date: dateDistanceToNow};
             publication.push(collaboratorPost);
             
         }

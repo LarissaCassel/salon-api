@@ -27,4 +27,22 @@ router.post('/', async(req, res) => {
         res.json({error:true, message:err.message});
     }
 });
+router.get('/list', async(req, res) => {
+    try{
+
+        const { collaborators } = req.body;
+        
+        let collaboratorList = [];
+
+        for(collaborator of collaborators ){
+            const collaboratorPerfil = await Collaborator.findById(collaborator).select('photo name');
+            collaboratorList.push(collaboratorPerfil);
+        }
+
+        res.json({ error:false, collaboratorList });
+
+    }catch(err){
+        res.json({error: true, message: err.message});
+    }
+});
 module.exports = router;
