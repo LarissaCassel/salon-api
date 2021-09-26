@@ -51,7 +51,7 @@ routes.get('/collaboratordates/:collaboratorId', async(req, res) => {
         res.json({error: true, message: err.message});
     }
 });
-routes.get('/collaboratorhours/:collaboratorId', async(req, res) => {
+routes.post('/collaboratorhours/:collaboratorId', async(req, res) => {
     try{
 
         const { collaboratorId } = req.params;

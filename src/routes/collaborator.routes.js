@@ -27,7 +27,7 @@ router.post('/', async(req, res) => {
         res.json({error:true, message:err.message});
     }
 });
-router.get('/list', async(req, res) => {
+router.post('/list', async(req, res) => {
     try{
 
         const { collaborators } = req.body;
