@@ -1,18 +1,17 @@
-const express = require('express');
+import express from 'express';
 const routes = express.Router();
 
-const addDays = require('date-fns/addDays');
-const eachDayOfInterval = require('date-fns/eachDayOfInterval');
-const getDay = require('date-fns/getDay');
-const format = require('date-fns/format');
+import { 
+    addDays, 
+    eachDayOfInterval, 
+    getDay, 
+    format, 
+    addMinutes, 
+    isBefore, 
+    parseISO } from 'date-fns';
 
-const addMinutes = require('date-fns/addMinutes');
-const isBefore = require('date-fns/isBefore');
-const isEqual = require('date-fns/isEqual');
-const parseISO = require('date-fns/parseISO');
-
-const Collaborator = require('../models/collaborator');
-const Schedule = require('../models/schedule');
+import Collaborator from '../models/collaborator.js';
+import Schedule from '../models/schedule.js';
 
 const { INTERVAL_IN_DAYS } = process.env;
 
@@ -34,13 +33,13 @@ routes.get('/collaboratordates/:collaboratorId', async(req, res) => {
         const weekName = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX'];
         const agenda = await Collaborator.findById(collaboratorId).select('dayOfWeek');
 
-        for(day of daysOfInterval){ 
-            const dayOfWeek = getDay(new Date(day)); // 0 -> Domingo
+        for(let i = 0; i < daysOfInterval.length; i++){ 
+            const dayOfWeek = getDay(new Date(daysOfInterval[i])); // 0 -> Domingo
             const date = agenda.dayOfWeek.includes(dayOfWeek); 
             
             if(date){
-                const dayFormated = format(new Date(day), 'dd/MMM').split('/');
-                dates.push({day: dayFormated[0], month: dayFormated[1], week: weekName[dayOfWeek], date: day});
+                const dayFormated = format(new Date(daysOfInterval[i]), 'dd/MMM').split('/');
+                dates.push({day: dayFormated[0], month: dayFormated[1], week: weekName[dayOfWeek], date: daysOfInterval[i]});
             }
 
         }
@@ -95,4 +94,4 @@ routes.post('/', async(req, res) => {
         res.json({error: true, message: err.message});
     }
 });
-module.exports = routes;
+export default routes;

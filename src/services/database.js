@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const {DATABASE_URI} = process.env;
 
 mongoose.set('useNewUrlParser', true);

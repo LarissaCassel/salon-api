@@ -1,12 +1,8 @@
-const express = require('express');
+import express from 'express';
+import {getDay, format, isAfter, isBefore } from 'date-fns';
+
 const router = express.Router();
-
-const getDay = require('date-fns/getDay'); // 0 -> Domingo
-const format = require('date-fns/format');
-const isAfter = require('date-fns/isAfter');
-const isBefore = require('date-fns/isBefore');
-
-const Salon = require('../models/salon');
+import Salon from '../models/salon.js';
 
 //CRIAR UM SALAO 
 router.post('/', async(req, res) => {
@@ -35,7 +31,7 @@ router.get('/:id', async (req, res) => {
         const after = isAfter(new Date(2021, 6, 11, today[0], today[1]), new Date(2021, 6, 11, open[0], open[1]));
         const before = isBefore(new Date(2021, 6, 11, today[0], today[1]), new Date(2021, 6, 11, close[0], close[1]));
 
-        const status = after && before ? 'Aberto' : 'Fechado';
+        const status = after && before ? 'ABERTO' : 'FECHADO';
         const salonData = { salonName: salon.name, salonLogo: salon.logo,city: salon.address.city, status};
         
         res.json({error: false, salonData}); 
@@ -44,4 +40,4 @@ router.get('/:id', async (req, res) => {
         res.json({error: true, message: err.message});
     }
 });
-module.exports = router;
+export default router;

@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const Services = require('../models/services');
+import Services from '../models/services.js';
 
 router.post('/', async(req, res) => {
     try{
@@ -27,4 +27,4 @@ router.get('/salon/:salonId', async(req, res) => {
         res.json({error:true, message: err.message});
     }
 });
-module.exports = router;
+export default router;

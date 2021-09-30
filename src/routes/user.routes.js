@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const routes = express.Router();
 
-const User = require('../models/user');
+import User from '../models/user.js';
 
 routes.post('/', async( req, res ) => {
     try{
@@ -14,4 +14,4 @@ routes.post('/', async( req, res ) => {
     }
 });
 
-module.exports = routes;
+export default routes;

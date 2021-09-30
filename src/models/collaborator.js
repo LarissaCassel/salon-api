@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const collaborator = new Schema({
@@ -46,4 +46,4 @@ const collaborator = new Schema({
     }   
 });
 
-module.exports = mongoose.model('Collaborator', collaborator);
+export default mongoose.model('Collaborator', collaborator);

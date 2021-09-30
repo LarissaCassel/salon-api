@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const salon = new Schema({
@@ -58,4 +58,5 @@ const salon = new Schema({
     }   
 });
 salon.index({geo: '2dsphere'});
-module.exports = mongoose.model('Salon', salon);
+
+export default mongoose.model('Salon', salon);

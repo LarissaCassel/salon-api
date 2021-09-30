@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 const Schema  = mongoose.Schema;
 
 const timeline = new Schema({
@@ -22,4 +22,4 @@ const timeline = new Schema({
     }
 });
 
-module.exports = mongoose.model('Timeline', timeline);
+export default mongoose.model('Timeline', timeline);

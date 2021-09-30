@@ -1,7 +1,7 @@
-const express = require('express');
+import express from 'express';
 const router = express.Router();
 
-const Collaborator = require('../models/collaborator');
+import Collaborator from '../models/collaborator.js';
 
 //CRIAR COLABORADOR
 router.post('/', async(req, res) => {
@@ -34,8 +34,8 @@ router.post('/list', async(req, res) => {
         
         let collaboratorList = [];
 
-        for(collaborator of collaborators ){
-            const collaboratorPerfil = await Collaborator.findById(collaborator).select('photo name');
+        for(let i = 0; i < collaborators.length; i++){
+            const collaboratorPerfil = await Collaborator.findById(collaborators[i]).select('photo name');
             collaboratorList.push(collaboratorPerfil);
         }
 
@@ -45,4 +45,4 @@ router.post('/list', async(req, res) => {
         res.json({error: true, message: err.message});
     }
 });
-module.exports = router;
+export default router;
