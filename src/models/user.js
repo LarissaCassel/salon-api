@@ -4,15 +4,22 @@ const Schema = mongoose.Schema;
 const user = new Schema({
     name: {
         type: String,
-        required: [true, 'Diga o seu Nome']
+        required: [true, 'Nome Não Informado']
     },
     email:{
         type: String,
-        required:[true, 'Diga o seu Nome']
+        required:[true, 'Senha Não Informada']
     },
-    phone: {
+    password: {
         type: String,
-        require: [true, 'Telefone Não Informado']
+        require: [true, 'Senha Não Informada']
+    },
+    token:{
+        type: String
+    },
+    active:{
+        type: Boolean,
+        default: false
     }
 });
 
